@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abbas Zaidi - Student Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: block;
+        }
+
+        nav a:hover {
+            background: rgba(52, 152, 219, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.1) 2px,
+                rgba(255, 255, 255, 0.1) 4px
+            );
+            animation: float 10s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        section:nth-child(even) {
+            background: rgba(247, 250, 252, 0.5);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 2px;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .project-description {
+            flex-grow: 1;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-link-container {
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        .project-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid #3498db;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #3498db;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Awards */
+        .awards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .award-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #2a5298;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .award-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .clickable-award {
+            cursor: pointer;
+            border-left: 5px solid #1e3c72;
+        }
+
+        .clickable-award:hover {
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.05), rgba(42, 82, 152, 0.05));
+            transform: translateX(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .award-item::before {
+            content: '🏆';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .clickable-award::before {
+            content: '📜';
+        }
+
+        /* Education */
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            border-left: 5px solid #1e3c72;
+        }
+
+        .school-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .school-location {
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+
+        .school-dates {
+            font-style: italic;
+            color: #95a5a6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <header class="header" id="about">
+            <div class="header-content">
+                <h1>Abbas Zaidi</h1>
+                <p>Student at Crooms Academy of Information Technology</p>
+                <p>Aspiring Software Developer & Game Designer</p>
+                <div class="contact-info">
+                    <div class="contact-item">✉️ superabbas999@gmail.com</div>
+                </div>
+            </div>
+        </header>
+
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-title">Python Calculator</div>
+                    <div class="project-description">
+                        <p>Built a fully functional calculator application in Python with a Tkinter GUI, implementing numerical input handling, standard arithmetic operations, and application state management for continuous calculations. Incorporated robust error handling, including prevention of division by zero, to ensure a smooth user experience.</p>
+                    </div>
+                    <div class="project-link-container">
+                        <a href="https://replit.com/@abcabbasabbas/calculator#main.py" class="project-link" target="_blank">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Python Rock Paper Scissors</div>
+                    <div class="project-description">
+                        <p>Created a Rock Paper Scissors game in Python with a user-friendly Tkinter interface, implementing the game logic for win/lose/tie conditions and dynamically updating results on screen. Enhanced the interface with custom styling for a polished and engaging user experience.</p>
+                    </div>
+                    <div class="project-link-container">
+                        <a href="https://replit.com/@abcabbasabbas/RockPaperScizzorGame#main.py" class="project-link" target="_blank">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Python Catch The Dot</div>
+                    <div class="project-description">
+                        <p>Developed an interactive Python game using Pygame, featuring a core game loop, responsive player movement with arrow keys, collision detection, and real-time score tracking. Designed dynamic gameplay elements, such as player color changes upon collision, to create a more engaging experience.</p>
+                    </div>
+                    <div class="project-link-container">
+                        <a href="https://replit.com/@abcabbasabbas/CatchTheDotGame#main.py" class="project-link" target="_blank">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">C# + Unity - Critter Wars</div>
+                    <div class="project-description">
+                        <p>Developed Critter Wars, a 2D platformer game in Unity using C#, collaborating with a team to design and implement core gameplay systems including player movement, enemy AI, combat mechanics, and level progression. Applied version control and agile practices to ensure smooth collaboration and delivery of a polished final product.</p>
+                    </div>
+                    <div class="project-link-container">
+                        <span class="project-link" style="background: #95a5a6; border-color: #95a5a6; color: white;">Team Project</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Skills & Tools</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">💻</div>
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>C#</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Java</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>Development Tools</h3>
+                    <ul class="skill-list">
+                        <li>Unity Builder</li>
+                        <li>Visual Studio Code</li>
+                        <li>GitHub</li>
+                        <li>Pygame</li>
+                        <li>Tkinter</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">🎮</div>
+                    <h3>Specialized Skills</h3>
+                    <ul class="skill-list">
+                        <li>Game Design</li>
+                        <li>Professional Video Editing</li>
+                        <li>Athletic</li>
+                        <li>Team Builder</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="awards">
+            <h2 class="section-title">Awards & Certifications</h2>
+            <div class="awards-list">
+                <div class="award-item clickable-award" onclick="downloadCertificate('advance-python-developer')">
+                    <h3>Advance Python Developer</h3>
+                    <p>Certified by Codingal on April 27, 2025. Recognized for advanced proficiency in Python programming and software development practices.</p>
+                    <small style="color: #7f8c8d; font-style: italic;">Click to download certificate</small>
+                </div>
+
+                <div class="award-item clickable-award" onclick="downloadCertificate('python-game-developer')">
+                    <h3>Python Game Developer</h3>
+                    <p>Certified by Codingal on June 15, 2025. Demonstrated skills in creating interactive gaming experiences using Python.</p>
+                    <small style="color: #7f8c8d; font-style: italic;">Click to download certificate</small>
+                </div>
+
+                <div class="award-item">
+                    <h3>Unity Certified User: Artist</h3>
+                    <p>Official Unity certification recognizing competency in Unity's artistic and creative tools for game development.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="education-card">
+                <div class="school-name">Crooms Academy of Information Technology</div>
+                <div class="school-location">Sanford, FL — High School</div>
+                <div class="school-dates">August 2023 - May 2027</div>
+                <p style="margin-top: 1rem;">Specialized technology-focused education with emphasis on programming, software development, and information technology systems.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">I'm always interested in new opportunities and collaborations. Feel free to reach out!</p>
+                <div class="contact-info" style="justify-content: center;">
+                    <div class="contact-item" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
+                        <strong>📧 superabbas999@gmail.com</strong>
+                    </div>
+                    <div class="contact-item" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
+                        <strong>📞 (000) 000-0000</strong>
+                    </div>
+                    <div class="contact-item" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
+                        <strong>📍 Orlando FL</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Add smooth scrolling animation for section reveals
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.style.animationFillMode = 'both';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add click effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'A') {
+                    const link = this.querySelector('.project-link');
+                    if (link && link.href !== '#') {
+                        window.open(link.href, '_blank');
+                    }
+                }
+            });
+        });
+
+        // Certificate download function
+        function downloadCertificate(certificateType) {
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.target = '_blank';
+            
+            if (certificateType === 'advance-python-developer') {
+                // Direct download link for Advanced Python Developer Certificate
+                link.href = 'https://drive.google.com/uc?export=download&id=1U_gtv0dF9cSbo2MVpAuV3krD8DYMOJVz';
+                link.download = 'Abbas_Zaidi_Advance_Python_Developer_Certificate.pdf';
+            } else if (certificateType === 'python-game-developer') {
+                // Direct download link for Python Game Developer Certificate
+                link.href = 'https://drive.google.com/uc?export=download&id=1HW0cBdRmKEruRJidfQ50tOQUihSzEEvs';
+                link.download = 'Abbas_Zaidi_Python_Game_Developer_Certificate.pdf';
+            }
+            
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Add typing effect to header (subtle)
+        const headerText = document.querySelector('.header h1');
+        if (headerText) {
+            headerText.style.opacity = '0';
+            setTimeout(() => {
+                headerText.style.transition = 'opacity 1s ease';
+                headerText.style.opacity = '1';
+            }, 500);
+        }
+    </script>
+</body>
+</html>
