@@ -439,6 +439,30 @@
         <section id="projects">
             <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
+                
+                <!-- KCheck Project -->
+                <div class="project-card">
+                    <div class="project-title">KCheck - AI Health Tracker</div>
+                    <div class="project-description">
+                        <p>Designed and implemented a Base44-powered AI application to help patients monitor potassium (K) and phosphorus intake through photos of their meals. Leveraging AI for food recognition, the app calculates nutrient content, providing effortless tracking for patients managing kidney health and dietary restrictions.</p>
+                    </div>
+                    <div class="project-link-container">
+                        <a href="https://kcheck.base44.app" class="project-link" target="_blank">View Project</a>
+                    </div>
+                </div>
+
+                <!-- NutriSnap Project -->
+                <div class="project-card">
+                    <div class="project-title">NutriSnap - Calorie & Protein Tracker</div>
+                    <div class="project-description">
+                        <p>Developed an AI-powered web application that analyzes meal photos and estimates calorie and protein content within seconds. NutriSnap uses Base44 and computer vision to streamline nutrition tracking, making healthy eating effortless and data-driven for users.</p>
+                    </div>
+                    <div class="project-link-container">
+                        <a href="https://nutrisnap-main.base44.app" class="project-link" target="_blank">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Existing Projects -->
                 <div class="project-card">
                     <div class="project-title">Python Calculator</div>
                     <div class="project-description">
@@ -573,7 +597,6 @@
     </div>
 
     <script>
-        // Add smooth scrolling animation for section reveals
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -588,12 +611,10 @@
             });
         }, observerOptions);
 
-        // Observe all sections
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
 
-        // Add click effects to project cards
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('click', function(e) {
                 if (e.target.tagName !== 'A') {
@@ -605,29 +626,23 @@
             });
         });
 
-        // Certificate download function
         function downloadCertificate(certificateType) {
-            // Create a temporary link element
             const link = document.createElement('a');
             link.target = '_blank';
             
             if (certificateType === 'advance-python-developer') {
-                // Direct download link for Advanced Python Developer Certificate
                 link.href = 'https://drive.google.com/uc?export=download&id=1U_gtv0dF9cSbo2MVpAuV3krD8DYMOJVz';
                 link.download = 'Abbas_Zaidi_Advance_Python_Developer_Certificate.pdf';
             } else if (certificateType === 'python-game-developer') {
-                // Direct download link for Python Game Developer Certificate
                 link.href = 'https://drive.google.com/uc?export=download&id=1HW0cBdRmKEruRJidfQ50tOQUihSzEEvs';
                 link.download = 'Abbas_Zaidi_Python_Game_Developer_Certificate.pdf';
             }
             
-            // Trigger download
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
 
-        // Add typing effect to header (subtle)
         const headerText = document.querySelector('.header h1');
         if (headerText) {
             headerText.style.opacity = '0';
